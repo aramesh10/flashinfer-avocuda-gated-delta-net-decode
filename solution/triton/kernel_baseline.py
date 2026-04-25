@@ -251,10 +251,10 @@ def fused_recurrent_gated_delta_rule_fwd_kernel(
     o_v = i_v * BV + tl.arange(0, BV)  # [BV] — offsets into V dimension (tile)
 
     # Pointers into this (batch=i_n, head) for the single token (T=1)
-    p_q = q + (i_n * H + i_h) * K + o_k  # q: [B, H, K] flattened
-    p_k = k + (i_n * H + i_h) * K + o_k  # k: [B, H, K] flattened
-    p_v = v + (i_n * HV + i_hv) * V + o_v  # v: [B, HV, V] flattened
-    p_o = o + (i_n * HV + i_hv) * V + o_v  # o: [B, HV, V] flattened
+    p_q = q + (i_n * H + i_h) * K + o_k     # q: [B, H, K] flattened
+    p_k = k + (i_n * H + i_h) * K + o_k     # k: [B, H, K] flattened
+    p_v = v + (i_n * HV + i_hv) * V + o_v   # v: [B, HV, V] flattened
+    p_o = o + (i_n * HV + i_hv) * V + o_v   # o: [B, HV, V] flattened
 
     mask_k = o_k < K  # [BK]
     mask_v = o_v < V  # [BV]
